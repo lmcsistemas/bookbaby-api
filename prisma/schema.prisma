@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  // adicionado nesse arquvivo e no .env pois estou utilizando banco de dados na nuvem.
+}
+
+
+//criar uma migration: yarn prisma migrate dev
+model User {
+  id String @id @default(uuid())
+  name String
+  email String
+  password String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("users")
+  userscriancas UserCrianca[]
+}
+
+model Crianca {
+  id String @id @default(uuid())
+  name String
+  dtnascimento String
+  cpf String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("criancas")
+  userscriancas UserCrianca[]
+  agendas Agenda[]
+  mensagens Mensagem[]
+}
+
+
+model UserCrianca {
+  id String @id @default(uuid())
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  crianca Crianca @relation(fields: [criancaId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("usersCriancas")
+  criancaId String
+  userId String
+}
+
+model Agenda{
+  id String @id @default(uuid())
+  almoco String
+  lanche String
+  janta String
+  informacoes String
+  precisa String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  crianca Crianca @relation(fields: [criancaId], references: [id])
+  
+  @@map("agendas")
+  criancaId String
+
+}
+
+model Mensagem{
+  id String @id @default(uuid())
+  assunto String
+  texto String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  crianca Crianca @relation(fields: [criancaId], references: [id])
+  
+  @@map("mensagens")
+  criancaId String
+
+
+
+}
+
