@@ -1,2 +1,2 @@
-web: node dist/server.js
+web: ts-node src/server.ts
 release: npx prisma migrate deploy
