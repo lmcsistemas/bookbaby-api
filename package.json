@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "build": "prisma generate",
-    "start": "node dist/server.js"
+    "start": "ts-node src/server.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
