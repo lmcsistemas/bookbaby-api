@@ -12,14 +12,14 @@ import { DetailCriancaByUserController } from './controllers/Crianca/DetailCrian
 import { CreateAgendaController } from './controllers/Agenda/CreateAgendaController';
 import { DetailAgendaController } from './controllers/Agenda/DetailAgendaCrontroller';
 import { ListAgendaByChildController } from './controllers/Agenda/ListAgendaByChildController';
+import { UpdateAgendaController } from './controllers/Agenda/UpdateAgendaController';
 
 const router = Router();
 
-router.get('/teste', (req: Request, res: Response) => {
+router.get('/   ', (req: Request, res: Response) => {
     return res.json({ok: true})
    //throw new Error("error ");
 })
-
 
 router.post('/testes', (req: Request, res: Response) => {
     return res.json({ok: true})
@@ -31,7 +31,6 @@ router.post('/users', new CreateUserController().handle)
 router.post('/login', new AuthUserController().handle);
 router.get('/detail', isAuthenticated, new DetailUserController().handle);
 
-
 //Rotas de Crianças
 router.post('/crianca', isAuthenticated, new CreateCriancaController().handle);
 router.get('/crianca', isAuthenticated, new DetailCriancaController().handle);
@@ -41,9 +40,7 @@ router.get('/criancaUser',isAuthenticated, new DetailCriancaByUserController().h
 //agenda
 router.post('/agenda', isAuthenticated, new CreateAgendaController().handle);
 router.get('/agenda',isAuthenticated, new DetailAgendaController().handle);
-
 router.get('/agenda-lista',isAuthenticated, new ListAgendaByChildController().handle);
-
-
+router.put('/agenda', new UpdateAgendaController().handle);
 
 export { router } ; 

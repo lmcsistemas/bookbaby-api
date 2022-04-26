@@ -8,8 +8,10 @@ class DetailUserService{
                 id:user_id
             },
             select:{
+                id:true,
                 name:true,
                 email:true,
+                nivel:true,
                 created_at:true,
                 updated_at:true
             }

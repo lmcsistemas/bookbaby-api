@@ -40,7 +40,7 @@ class AuthUserService{
 
 //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibWFyaWFzaWx2YSIsImVtYWlsIjoibWFyaWFzaWx2YUBnbWFpbC5jb20iLCJpYXQiOjE2NDgzMTI4NDYsImV4cCI6MTY1MDkwNDg0Niwic3ViIjoiMjU5MmUwM2YtODg0MS00ZTkyLThmNWMtNTJiN2E5ZGMwOWE5In0.EWXHijL1TLkG3xYoSD12CGlUHRIiYv_xmUsYu5P3ogU
 
-        return { id: user.id, name:user.name, email:user.email, token: token }
+        return { id: user.id, name:user.name, email:user.email, nivel:user.nivel, token: token }
     }
 }
 

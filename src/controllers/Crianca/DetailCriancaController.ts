@@ -3,11 +3,12 @@ import { DetailCriancaService } from '../../services/crianca/DetailCriancaServic
 
 class DetailCriancaController{
     async handle(req, res){
-        const {cpf} = req.query;
+        const {cpf, criancaId} = req.query;
 
         console.log('cpf', cpf);
+        console.log('criancaId', criancaId);
         const detailCriancaService = new DetailCriancaService();
-        const crianca = await detailCriancaService.execute(cpf);
+        const crianca = await detailCriancaService.execute(cpf, criancaId);
 
         return res.json(crianca);
 

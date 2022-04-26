@@ -5,9 +5,10 @@ import { DetailAgendaService } from '../../services/Agenda/DetailAgendaService'
 class DetailAgendaController{
     async handle(req, res){
 
-        const {id} = req.body;
+        const {id} = req.query;
+        console.log("query", req.query)
 
-        console.log('criancaid', id);
+        console.log('id', id);
 
         const detailAgendaService = new DetailAgendaService();
         const agenda = await detailAgendaService.execute(id);

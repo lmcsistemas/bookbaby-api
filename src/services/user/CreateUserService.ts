@@ -1,17 +1,18 @@
 import prismaClient from '../../prisma';
 import { hash } from 'bcryptjs';
 
-
 interface UserRequest{
     name:string;
     email:string;
-    password:string
+    password:string;
+    cpf:string;
+    nivel:string
 }
 
 class CreateUserService{
-    async execute({name, email, password}:UserRequest){
+    async execute({name, email, password,cpf, nivel}:UserRequest){
 
-        console.log(name, email, password)
+        console.log(name, email, password, cpf, nivel)
 
         //verificar o email
         if(!email){
@@ -30,23 +31,23 @@ class CreateUserService{
         }
 
         const passwordHash = await hash(password, 8);
-
         console.log('passhash', passwordHash)
-
         const user = await prismaClient.user.create({
             data:{
                 name:name,
                 email:email,
                 password:passwordHash,
+                cpf:cpf,
+                nivel:nivel
             },
             select:{
                 id:true,
                 email:true, 
-                name:true,                
+                name:true, 
+                cpf:true,
+                nivel:true,
             }
         })
-
-
         return user
     }
 }

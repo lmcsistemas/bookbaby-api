@@ -1,12 +1,16 @@
 import prismaClient from "../../prisma";
 
 class DetailCriancaService{
-    async execute(cpf:string){
+    async execute(cpf:string, criancaId:string){
 
         const crianca = await prismaClient.crianca.findFirst({
             where:{
-                cpf:cpf
+                OR:[
+                    {id:criancaId},
+                    {cpf:cpf},                    
+                ]                
             }
+            
         })
 
         return crianca

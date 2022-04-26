@@ -4,10 +4,14 @@ import { ListAgendaByChildService } from '../../services/Agenda/ListAgendaByChil
 class ListAgendaByChildController{
     async handle(req, res){
 
-        const { criancaId } = req.body; 
+        const { criancaId, userId, dataInicio, dataFim } = req.query; 
+
+        console.log('userID', userId)
+        console.log('criancaId', criancaId)
+        console.log('baody', req.query)        
 
         const listAgendaByChildService = new ListAgendaByChildService();
-        const listaAgenda = await listAgendaByChildService.execute(criancaId);
+        const listaAgenda = await listAgendaByChildService.execute({ criancaId, userId, dataInicio, dataFim });
 
         res.json(listaAgenda);
     }

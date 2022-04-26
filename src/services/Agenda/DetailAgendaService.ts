@@ -9,7 +9,6 @@ class DetailAgendaService{
                 id:id
             }
         })
-
         return agendas;
     }
 }
